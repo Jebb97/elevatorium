@@ -1,0 +1,219 @@
+/* Couche premium : conserve la palette de marque et améliore la conversion. */
+:root {
+  --premium-line: rgba(24, 43, 9, 0.12);
+  --premium-surface: rgba(255, 255, 255, 0.76);
+}
+
+body {
+  background: #f4f6ef;
+  letter-spacing: -0.01em;
+}
+
+.site-header {
+  background: rgba(244, 246, 239, 0.86);
+  box-shadow: 0 8px 30px rgba(24, 43, 9, 0.04);
+}
+
+.brand-mark {
+  box-shadow: 0 8px 18px rgba(24, 43, 9, 0.18);
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 8%, rgba(180, 222, 0, 0.2), transparent 28%),
+    linear-gradient(180deg, #f7f8f4 0%, #edf2e7 100%);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  right: -140px;
+  bottom: -180px;
+  border: 1px solid rgba(180, 222, 0, 0.34);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-copy,
+.hero-visual {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-copy h1,
+.section-heading h2,
+.cta-box h2 {
+  text-wrap: balance;
+}
+
+.hero-image-placeholder {
+  isolation: isolate;
+  background:
+    linear-gradient(135deg, rgba(24, 43, 9, 0.1), rgba(24, 43, 9, 0.68)),
+    url("./assets/images/hero.svg") center / cover no-repeat;
+  min-height: 470px;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 2rem;
+  text-align: left;
+}
+
+.hero-image-placeholder::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(0deg, rgba(24, 43, 9, 0.82), transparent 58%);
+}
+
+.hero-image-placeholder span,
+.hero-image-placeholder small {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-image-placeholder span {
+  font-size: clamp(2.2rem, 4vw, 4rem);
+}
+
+.mini-card {
+  border-color: rgba(255, 255, 255, 0.64);
+  backdrop-filter: blur(10px);
+}
+
+.training-card,
+.approach-step,
+.reason-card,
+.pillar-card,
+.platform-card,
+.contact-card,
+.resource-coming-soon,
+.certificate-box {
+  background: var(--premium-surface);
+  backdrop-filter: blur(8px);
+  border-color: var(--premium-line);
+}
+
+.training-card:hover,
+.training-card:focus-within,
+.approach-step:hover,
+.reason-card:hover,
+.pillar-card:hover,
+.platform-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(180, 222, 0, 0.72);
+  box-shadow: 0 22px 42px rgba(24, 43, 9, 0.1);
+}
+
+.training-card,
+.approach-step,
+.reason-card,
+.pillar-card,
+.platform-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card-icon {
+  border: 1px solid rgba(180, 222, 0, 0.25);
+}
+
+.section-heading {
+  position: relative;
+}
+
+.section-heading::after {
+  content: "";
+  display: block;
+  width: 46px;
+  height: 4px;
+  margin-top: 1rem;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+
+.community-strip {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: 2.5rem;
+  padding: 1.4rem 1.6rem;
+  border: 1px solid rgba(180, 222, 0, 0.32);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(110deg, var(--color-primary), #294514);
+  color: var(--color-white);
+  box-shadow: 0 18px 34px rgba(24, 43, 9, 0.14);
+}
+
+.community-strip h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.community-strip p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.community-strip .button-secondary {
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.mobile-conversion-bar {
+  display: none;
+}
+
+@media (max-width: 820px) {
+  .community-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  body {
+    padding-bottom: 76px;
+  }
+
+  .mobile-conversion-bar {
+    position: fixed;
+    z-index: 70;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.7rem 1rem;
+    background: rgba(24, 43, 9, 0.96);
+    border-top: 1px solid rgba(180, 222, 0, 0.35);
+    box-shadow: 0 -8px 24px rgba(24, 43, 9, 0.15);
+  }
+
+  .mobile-conversion-bar span {
+    color: var(--color-white);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .mobile-conversion-bar .button {
+    min-height: 40px;
+    padding: 0.55rem 0.9rem;
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .training-card,
+  .approach-step,
+  .reason-card,
+  .pillar-card,
+  .platform-card {
+    transition: none;
+  }
+}

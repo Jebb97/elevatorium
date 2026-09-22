@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" role="img" aria-labelledby="title desc">
+  <title id="title">Illustration d’une communauté qui apprend ensemble</title>
+  <desc id="desc">Cercles reliés représentant une communauté et le partage de connaissances.</desc>
+  <rect width="900" height="700" rx="40" fill="#D4DE0C"/>
+  <path d="M200 350h500M300 180l300 340M600 180L300 520" stroke="#182B09" stroke-width="12" opacity=".55"/>
+  <g fill="#182B09" stroke="#F7F8F4" stroke-width="12"><circle cx="200" cy="350" r="90"/><circle cx="700" cy="350" r="90"/><circle cx="300" cy="180" r="90"/><circle cx="600" cy="180" r="90"/><circle cx="450" cy="510" r="100"/></g>
+  <g fill="#B4DE00" font-family="Arial, sans-serif" font-size="26" font-weight="700" text-anchor="middle"><text x="200" y="360">LIEN</text><text x="700" y="360">PARTAGE</text><text x="300" y="190">IDÉES</text><text x="600" y="190">PROJETS</text><text x="450" y="520">COMMUNAUTÉ</text></g>
+</svg>

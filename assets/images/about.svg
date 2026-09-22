@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" role="img" aria-labelledby="title desc">
+  <title id="title">Illustration du parcours Elevatorium</title>
+  <desc id="desc">Quatre étapes reliées : connaissances, compétences, projets et opportunités.</desc>
+  <rect width="900" height="700" rx="40" fill="#F7F8F4"/>
+  <path d="M130 510C270 410 300 300 430 360s160 40 340-190" fill="none" stroke="#182B09" stroke-width="14" stroke-linecap="round"/>
+  <g fill="#B4DE00" stroke="#182B09" stroke-width="8"><circle cx="130" cy="510" r="55"/><circle cx="350" cy="345" r="55"/><circle cx="570" cy="385" r="55"/><circle cx="770" cy="170" r="55"/></g>
+  <g fill="#182B09" font-family="Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle"><text x="130" y="516">SAVOIR</text><text x="350" y="351">AGIR</text><text x="570" y="391">CRÉER</text><text x="770" y="176">ÉVOLUER</text></g>
+</svg>
