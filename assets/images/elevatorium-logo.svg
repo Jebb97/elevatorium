@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000" role="img" aria-labelledby="title desc">
+  <title id="title">Logo Elevatorium</title>
+  <desc id="desc">Flèche ascendante vert citron et nom Elevatorium sur fond vert foncé.</desc>
+  <rect width="2000" height="2000" fill="#182B09"/>
+
+  <!-- Flèche ascendante -->
+  <path fill="#B4DE00" d="M1032 600L1195 805H1138V1240H967V805H874Z"/>
+  <rect x="967" y="804" width="171" height="440" fill="#B4DE00"/>
+
+  <!-- Traits d'élévation -->
+  <rect x="970" y="1028" width="10" height="350" rx="5" fill="#B4DE00"/>
+  <rect x="1002" y="1126" width="10" height="286" rx="5" fill="#B4DE00"/>
+  <rect x="1034" y="1200" width="10" height="210" rx="5" fill="#B4DE00"/>
+
+  <!-- Mot-symbole vertical -->
+  <g transform="translate(1084 1235) rotate(-90)">
+    <text x="0" y="0" fill="#182B09" font-family="Arial, Helvetica, sans-serif" font-size="86" font-weight="800" letter-spacing="1">Elevatorium</text>
+  </g>
+</svg>
