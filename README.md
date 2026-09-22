@@ -1,143 +1,91 @@
-# ELEVATORIUM
+# ELEVATORIUM — V2
 
-Site statique pour l’organisation de formation et de développement professionnel ELEVATORIUM.
+Version publique statique du site Elevatorium, conçue pour GitHub Pages avec HTML5, CSS3 et JavaScript vanilla.
 
-## 1. Lancer le site localement
+## Lancer localement
 
-1. Ouvrez le dossier du projet dans votre éditeur de code.
-2. Lancez un serveur local simple, par exemple :
-   ```bash
-   python3 -m http.server 8000
-   ```
-3. Ouvrez dans votre navigateur :
-   ```text
-   http://localhost:8000
-   ```
-
-Vous pouvez aussi ouvrir directement `index.html` dans le navigateur, mais un petit serveur local est conseillé pour éviter certains comportements de navigation.
-
-## 2. Modifier les couleurs
-
-Les couleurs de marque sont définies dans `style.css` à l’aide de variables CSS :
-
-```css
-:root {
-  --color-primary: #182B09;
-  --color-accent: #B4DE00;
-  --color-accent-secondary: #D4DE0C;
-  --color-white: #FFFFFF;
-}
+```bash
+python3 -m http.server 8000
 ```
 
-Vous pouvez modifier ces variables sans changer l’identité générale du site.
+Puis ouvrir `http://localhost:8000`.
 
-## 3. Modifier les formations
+## Publier sur GitHub Pages
 
-Les formations sont visibles dans `index.html` dans la section `#formations`.
+Dans `Settings > Pages` du dépôt `Jebb97/elevatorium` :
 
-Chaque carte est un article avec :
-- un titre
-- une description
-- un bouton “En savoir plus”
+- Source : `Deploy from a branch`
+- Branch : `main`
+- Folder : `/ (root)`
 
-Pour ajouter ou modifier une formation, modifiez les éléments dans cette section et/ou les données dans `script.js` si vous souhaitez personnaliser le contenu de la modale.
+L’URL attendue est `https://jebb97.github.io/elevatorium/`.
 
-## 4. Modifier les liens sociaux
+## Personnaliser
 
-Dans `index.html`, vérifiez les liens suivants :
+### Couleurs
 
-- WhatsApp
-- Facebook
-- TikTok
-- Tally
+Les couleurs sont dans `style.css`, au début du fichier : `--color-primary`, `--color-accent`, `--color-accent-secondary` et `--color-white`.
 
-Exemples :
+### Formations
 
-```html
-<a href="https://wa.me/243840599200" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-```
+Les huit cartes et leurs détails de modal sont dans `index.html`, dans `#formations`. Les attributs `data-title`, `data-summary` et `data-body` alimentent les modales.
 
-Pour ajouter un futur lien Telegram, remplacez le texte placé dans le bloc contact :
+### Inscription Tally
 
-```html
-<span>TELEGRAM_URL_TO_BE_ADDED</span>
-```
+Le lien officiel utilisé par tous les boutons d’inscription est :
 
-par un vrai lien quand la valeur sera disponible.
+`https://tally.so/r/3qxNJk?transparentBackground=1`
 
-## 5. Modifier le lien Tally
+Il s’ouvre dans un nouvel onglet. Le site ne crée pas de formulaire concurrent.
 
-Le lien d’inscription est configuré dans plusieurs endroits :
+### Réseaux et contact
 
-```html
-https://tally.so/r/3qxNJk?transparentBackground=1
-```
+Les liens WhatsApp, Facebook et TikTok sont dans la section `#contact` et dans le footer. Telegram a été retiré du site conformément aux consignes.
 
-À remplacer uniquement si le lien officiel change.
+## Logo officiel
 
-## 6. Remplacer les images
+Le logo Canva fourni n’a pas pu être récupéré automatiquement depuis le lien Canva. Aucun faux logo n’a été créé.
 
-Le site a été conçu pour être compatible avec des images locales. Les emplacements à prévoir sont :
+Pour utiliser le logo officiel, placez les fichiers dans :
+
+- `assets/images/elevatorium-logo.svg` — version claire ou sombre selon le fond ;
+- éventuellement `assets/images/elevatorium-logo-light.svg` pour le footer.
+
+Puis remplacez le bloc `.brand-mark` dans `index.html` par une balise `img` avec un `alt="Elevatorium"`. Le favicon actuel est une solution temporaire basée sur la lettre E et peut être remplacé par une variante officielle appropriée.
+
+## Images
+
+Le dépôt contient des illustrations SVG locales et légères pour éviter toute dépendance externe instable :
+
+- `assets/images/hero.svg`
+- `assets/images/about.svg`
+- `assets/images/learning.svg`
+- `assets/images/contact-phone.svg`
+
+Aucune photographie d’apprenant ou de membre d’Elevatorium n’a été inventée. Pour ajouter des photographies réelles autorisées, utilisez de préférence :
 
 - `assets/images/hero.webp`
-- `assets/images/about.webp`
-- `assets/images/training.webp`
-- `assets/images/community.webp`
+- `assets/images/contact-phone.webp`
+- `assets/images/learning.webp`
+- `assets/images/digital-skills.webp`
+- `assets/images/entrepreneurship.webp`
 
-Pour l’instant, le design utilise des blocs visuels lisibles et propres. Vous pouvez remplacer ces zones par des images locales plus tard.
+Puis remplacez le `src` correspondant dans `index.html`. La photo de la section « Rencontrons-nous » doit être une image professionnelle autorisée d’une personne utilisant un téléphone, et non une image présentée comme un membre d’Elevatorium sans preuve.
 
-## 7. Publier sur GitHub Pages
+## Ressources futures
 
-1. Pousser tous les fichiers du projet sur le dépôt GitHub.
-2. Dans le dépôt, allez dans :
-   - `Settings`
-   - `Pages`
-3. Sélectionnez la branche principale (`main`).
-4. Choisissez le dossier racine.
-5. Enregistrez.
+La section `#ressources` est volontairement simple et affiche « Nos ressources arrivent bientôt. ». Elle pourra accueillir des articles, guides, tutoriels, modèles, checklists et ressources professionnelles sans refonte de la navigation.
 
-Le site sera alors disponible selon une URL de type :
+## Accessibilité et performance
 
-```text
-https://<votre-utilisateur>.github.io/elevatorium/
-```
+- navigation clavier et focus visible ;
+- menu mobile avec `aria-expanded`, `aria-controls` et fermeture avec Escape ;
+- modales de formation accessibles et fermables au clavier ;
+- animations désactivées ou réduites avec `prefers-reduced-motion` ;
+- images locales et chargement différé hors écran initial ;
+- aucun backend ou framework requis.
 
-Le site a été conçu avec des chemins relatifs pour rester compatible avec GitHub Pages, y compris si le dépôt est publié dans un sous-chemin.
-
-## 8. Ajouter le futur lien Telegram
-
-Dans `index.html`, la section Contact contient actuellement :
-
-```html
-<span>TELEGRAM_URL_TO_BE_ADDED</span>
-```
-
-Quand le vrai lien Telegram sera connu, remplacez cette ligne par :
-
-```html
-<a href="VOTRE_LIEN_TELEGRAM" target="_blank" rel="noopener noreferrer">Telegram</a>
-```
-
-## 9. Ajouter ultérieurement des ressources et articles
-
-La structure est prête pour recevoir plus tard :
-
-- articles
-- vidéos
-- guides
-- tutoriels
-- checklists
-- ressources professionnelles
-- ressources IA
-- ressources entrepreneuriales
-
-Vous pouvez étendre la section `#ressources` ou ajouter un blog plus tard sans refaire toute l’interface.
-
-Les éléments existants sont déjà organisés pour faciliter l’ajout d’une structure CMS, d’une API ou d’un système de recherche.
-
----
-
-## Structure du projet
+## Structure
 
 ```text
 elevatorium/
@@ -149,11 +97,3 @@ elevatorium/
 └── assets/
     └── images/
 ```
-
-## À retenir
-
-- le site est statique ;
-- compatible GitHub Pages ;
-- sans backend requis ;
-- entièrement en français ;
-- conçu pour la conversion vers l’inscription via Tally.
