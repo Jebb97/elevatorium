@@ -6,6 +6,60 @@ document.addEventListener("DOMContentLoaded", () => {
     link.href = url.toString();
   });
 
+  const heroPolishStyles = document.createElement("style");
+  heroPolishStyles.textContent = `
+    /* La photo est une bande autonome sous le texte principal. */
+    .hero::before {
+      border-radius: 0 0 26px 26px;
+      box-shadow:
+        0 28px 45px rgba(24, 43, 9, 0.28),
+        0 10px 18px rgba(24, 43, 9, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      filter: saturate(1.04) contrast(1.02);
+    }
+
+    /* Les boutons et leur texte restent groupés en bas à droite de la photo. */
+    .hero-controls {
+      right: clamp(1rem, 4vw, 4rem);
+      bottom: clamp(2rem, 5vw, 4rem);
+      padding: 1rem 1.25rem;
+      border-radius: 24px;
+      background: linear-gradient(
+        135deg,
+        rgba(24, 43, 9, 0.16),
+        rgba(24, 43, 9, 0.04)
+      );
+      box-shadow: 0 16px 30px rgba(24, 43, 9, 0.16);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
+
+    .hero-actions {
+      justify-content: flex-end;
+    }
+
+    .hero-note {
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.58);
+    }
+
+    @media (max-width: 760px) {
+      .hero-controls {
+        right: 1rem;
+        bottom: 2rem;
+        left: 1rem;
+        align-items: flex-end;
+      }
+      .hero-actions {
+        justify-content: flex-end;
+      }
+      .hero-note {
+        text-align: right;
+      }
+    }
+  `;
+  document.head.appendChild(heroPolishStyles);
+
   const logoRemovalStyles = document.createElement("style");
   logoRemovalStyles.textContent = `
     .logo-mark img { display: none !important; }
