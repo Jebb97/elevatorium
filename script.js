@@ -1,133 +1,177 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Tally doit s’ouvrir avec un arrière-plan lisible, jamais en mode transparent.
-  document.querySelectorAll('a[href*="tally.so/r/3qxNJk"]').forEach((link) => {
-    const url = new URL(link.href);
-    url.searchParams.delete("transparentBackground");
-    link.href = url.toString();
-  });
-
-  const heroPolishStyles = document.createElement("style");
-  heroPolishStyles.textContent = `
-    /* La photo est une bande autonome sous le texte principal. */
-    .hero::before {
-      border-radius: 0 0 26px 26px;
-      box-shadow:
-        0 28px 45px rgba(24, 43, 9, 0.28),
-        0 10px 18px rgba(24, 43, 9, 0.18),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      filter: saturate(1.04) contrast(1.02);
+  const trainingContent = {
+    "digital-marketing": {
+      title: "Digital Marketing",
+      summary: "Comprendre les bases du marketing digital et les appliquer à des situations réelles.",
+      body: [
+        { heading: "Présentation", items: ["Découvrir les fondamentaux du marketing digital à partir d’exemples concrets et de cas simples."] },
+        { heading: "Objectifs", items: ["Comprendre le rôle du marketing digital dans la croissance d’une marque ou d’un projet.", "Identifier les bonnes pratiques pour attirer et engager une audience."] },
+        { heading: "Compétences développées", items: ["Analyse de marché", "Stratégie digitale", "Positionnement", "Communication utile"] },
+        { heading: "Pratique", items: ["Études de cas", "Exercices de positionnement", "Travail sur des messages et des parcours utilisateurs simples."] },
+        { heading: "Projets", items: ["Concevoir une proposition de valeur claire.", "Mettre en place une approche marketing adaptée à un projet concret."] },
+        { heading: "Évaluation", items: ["Évaluation continue sur la qualité de la compréhension, de l’analyse et de la mise en application."] }
+      ]
+    },
+    "social-media-marketing": {
+      title: "Social Media Marketing",
+      summary: "Créer une présence utile, cohérente et crédible sur les réseaux sociaux.",
+      body: [
+        { heading: "Présentation", items: ["Explorer comment concevoir une présence digitale plus claire et plus utile sur les plateformes sociales."] },
+        { heading: "Objectifs", items: ["Comprendre les attentes des audiences sur les réseaux sociaux.", "Créer une identité visuelle et éditoriale cohérente."] },
+        { heading: "Compétences développées", items: ["Planification de contenus", "Rédaction pour les réseaux", "Analyse de performance", "Animation de communautés"] },
+        { heading: "Pratique", items: ["Création de contenus adaptés à différents publics.", "Structuration d’une présence digitale simple et crédible."] },
+        { heading: "Projets", items: ["Proposer une stratégie de diffusion adaptée à un projet ou une marque.", "Rédiger un plan de contenus cohérent."] },
+        { heading: "Évaluation", items: ["Évaluation des compétences de planification, de communication et d’adaptation."] }
+      ]
+    },
+    "creation-de-contenu": {
+      title: "Création de contenu",
+      summary: "Produire des contenus clairs, pertinents et adaptés à une audience.",
+      body: [
+        { heading: "Présentation", items: ["Développer des compétences pour créer des contenus utiles, lisibles et adaptés à des objectifs précis."] },
+        { heading: "Objectifs", items: ["Identifier le bon message pour le bon public.", "Créer un contenu cohérent pour informer, inspirer ou engager."] },
+        { heading: "Compétences développées", items: ["Rédaction", "Structuration de message", "Production visuelle", "Adaptation selon le canal"] },
+        { heading: "Pratique", items: ["Ateliers de production de contenus.", "Travail sur la clarté, l’originalité et la cohérence éditoriale."] },
+        { heading: "Projets", items: ["Réaliser des contenus à partir d’un objectif précis.", "Créer un mini cadre de production cohérent."] },
+        { heading: "Évaluation", items: ["Évaluation du message, de la qualité de la structure et de la pertinence du contenu."] }
+      ]
+    },
+    "community-management": {
+      title: "Community Management",
+      summary: "Créer des échanges de qualité et animer une communauté avec méthode.",
+      body: [
+        { heading: "Présentation", items: ["Comprendre les bases de l’animation de communauté et de la gestion des échanges en ligne."] },
+        { heading: "Objectifs", items: ["Créer un cadre d’échanges positif et utile.", "Répondre de manière claire et professionnelle aux demandes, questions et feedbacks."] },
+        { heading: "Compétences développées", items: ["Animation de groupes", "Rédaction de réponses", "Mise en place d’une culture de communauté", "Organisation des interactions"] },
+        { heading: "Pratique", items: ["Simulation de discussions et de réponses.", "Organisation de contenus et d’échanges pour maintenir une dynamique claire."] },
+        { heading: "Projets", items: ["Mettre en place une logique d’animation cohérente pour une communauté donnée."] },
+        { heading: "Évaluation", items: ["Évaluation de la qualité des échanges, de la clarté de la communication et de la compréhension du public."] }
+      ]
+    },
+    "intelligence-artificielle": {
+      title: "Intelligence artificielle",
+      summary: "Explorer des usages utiles et responsables pour apprendre, créer et travailler.",
+      body: [
+        { heading: "Présentation", items: ["Découvrir les usages de l’IA dans les métiers, la création et le travail quotidien."] },
+        { heading: "Objectifs", items: ["Comprendre les outils d’IA disponibles et leur utilisation responsable.", "Apprendre à utiliser l’IA pour soutenir la création et le travail."] },
+        { heading: "Compétences développées", items: ["Compréhension des outils IA", "Utilisation responsable", "Création assistée", "Analyse critique des résultats"] },
+        { heading: "Pratique", items: ["Découverte des outils et de leurs usages utiles.", "Exercices sur la production assistée, l’organisation et la recherche d’information."] },
+        { heading: "Projets", items: ["Créer une petite production assistée par l’IA.", "Mettre en place un usage réfléchi dans un contexte professionnel ou créatif."] },
+        { heading: "Évaluation", items: ["Évaluation de la compréhension des outils, de leur usage responsable et des résultats produits."] }
+      ]
+    },
+    "design-graphique": {
+      title: "Design graphique",
+      summary: "Développer un langage visuel lisible, professionnel et attractif.",
+      body: [
+        { heading: "Présentation", items: ["Explorer les bases du design graphique pour produire des visuels simples, lisibles et pertinents."] },
+        { heading: "Objectifs", items: ["Comprendre les principes fondamentaux du visuel.", "Créer des supports simples et efficaces pour communiquer."] },
+        { heading: "Compétences développées", items: ["Palette et hiérarchie visuelle", "Composition", "Typographie", "Création simple de visuels"] },
+        { heading: "Pratique", items: ["Exercices sur les formes, la mise en page et les contrastes.", "Production de visuels utiles pour un message ou un projet."] },
+        { heading: "Projets", items: ["Créer une petite composition visuelle cohérente.", "Mettre en pratique la communication visuelle dans un contexte concret."] },
+        { heading: "Évaluation", items: ["Évaluation de la cohérence visuelle, de la lisibilité et de la qualité de la composition."] }
+      ]
+    },
+    "entrepreneuriat": {
+      title: "Entrepreneuriat",
+      summary: "Transformer une idée en projet structuré, réaliste et orienté vers l’action.",
+      body: [
+        { heading: "Présentation", items: ["Approfondir la manière de penser un projet, de le structurer et de le rendre plus concret."] },
+        { heading: "Objectifs", items: ["Comprendre les bases de la création de projet.", "Transformer une idée en plan action simple et crédible."] },
+        { heading: "Compétences développées", items: ["Idéation", "Structuration de projet", "Analyse de besoin", "Mise en route d’une idée"] },
+        { heading: "Pratique", items: ["Travail sur l’idée, le contexte et les éléments essentiels à clarifier.", "Exercices de réflexion autour de la faisabilité et de la valeur."] },
+        { heading: "Projets", items: ["Développer une idée de projet simple et actionnable.", "Créer un plan de base pour la mise en œuvre."] },
+        { heading: "Évaluation", items: ["Évaluation de la clarté du projet, de la logique de mise en œuvre et de la capacité à structurer une idée."] }
+      ]
+    },
+    "anglais": {
+      title: "Anglais (L1–3)",
+      summary: "Renforcer la compréhension, la communication et la confiance pour évoluer.",
+      body: [
+        { heading: "Présentation", items: ["Développer les compétences de compréhension et d’expression pour mieux communiquer et apprendre dans un contexte international."] },
+        { heading: "Objectifs", items: ["Améliorer la compréhension orale et écrite.", "Développer la capacité à communiquer de manière plus claire et plus confiante."] },
+        { heading: "Compétences développées", items: ["Compréhension", "Expression écrite", "Communication orale", "Autonomie dans l’apprentissage"] },
+        { heading: "Pratique", items: ["Exercices de vocabulaire, de compréhension et de communication.", "Travail sur des situations concrètes de dialogue et d’expression."] },
+        { heading: "Projets", items: ["Réaliser des activités de communication et de compréhension adaptées à un contexte professionnel ou académique."] },
+        { heading: "Évaluation", items: ["Évaluation continue sur la compréhension, la précision et la fluidité de communication."] }
+      ]
     }
-
-    /* Les boutons et leur texte restent groupés en bas à droite de la photo. */
-    .hero-controls {
-      right: clamp(1rem, 4vw, 4rem);
-      bottom: clamp(2rem, 5vw, 4rem);
-      padding: 1rem 1.25rem;
-      border-radius: 24px;
-      background: linear-gradient(
-        135deg,
-        rgba(24, 43, 9, 0.16),
-        rgba(24, 43, 9, 0.04)
-      );
-      box-shadow: 0 16px 30px rgba(24, 43, 9, 0.16);
-      backdrop-filter: blur(3px);
-      -webkit-backdrop-filter: blur(3px);
-    }
-
-    .hero-actions {
-      justify-content: flex-end;
-    }
-
-    .hero-note {
-      color: #fff;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.58);
-    }
-
-    @media (max-width: 760px) {
-      .hero-controls {
-        right: 1rem;
-        bottom: 2rem;
-        left: 1rem;
-        align-items: flex-end;
-      }
-      .hero-actions {
-        justify-content: flex-end;
-      }
-      .hero-note {
-        text-align: right;
-      }
-    }
-  `;
-  document.head.appendChild(heroPolishStyles);
-
-  const logoRemovalStyles = document.createElement("style");
-  logoRemovalStyles.textContent = `
-    .logo-mark img { display: none !important; }
-    .logo-mark {
-      background: var(--color-primary);
-      color: var(--color-white);
-      font-size: 1.05rem;
-      font-weight: 800;
-    }
-    .logo-mark::after { content: "E"; }
-  `;
-  document.head.appendChild(logoRemovalStyles);
-
-  const menuToggle = document.querySelector(".menu-toggle");
-  const mainNav = document.querySelector("#main-nav");
-  const body = document.body;
-  const setMenu = (isOpen) => {
-    mainNav?.classList.toggle("is-open", isOpen);
-    menuToggle?.setAttribute("aria-expanded", String(isOpen));
-    menuToggle?.setAttribute("aria-label", isOpen ? "Fermer le menu" : "Ouvrir le menu");
-    body.style.overflow = isOpen ? "hidden" : "";
   };
-
-  menuToggle?.addEventListener("click", () => {
-    setMenu(menuToggle.getAttribute("aria-expanded") !== "true");
-  });
-  mainNav?.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => setMenu(false));
-  });
 
   const modal = document.querySelector("#training-modal");
   const modalTitle = document.querySelector("#modal-title");
   const modalSummary = document.querySelector("#modal-summary");
   const modalBody = document.querySelector("#modal-body");
   const closeButton = document.querySelector(".modal-close");
-  let previousFocus = null;
+  const modalBackdrop = document.querySelector(".modal-backdrop");
+  const menuToggle = document.querySelector(".menu-toggle");
+  const mainNav = document.querySelector("#main-nav");
 
-  const closeModal = () => {
+  const openModal = (courseKey) => {
     if (!modal) return;
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
-    previousFocus?.focus();
-  };
+    const course = trainingContent[courseKey];
+    if (!course) return;
 
-  const openModal = (card, button) => {
-    if (!modal) return;
-    previousFocus = button;
-    modalTitle.textContent = card.dataset.title || "Formation";
-    modalSummary.textContent = card.dataset.summary || "";
-    modalBody.textContent = card.dataset.body || "";
+    modalTitle.textContent = course.title;
+    modalSummary.textContent = course.summary;
+    modalBody.innerHTML = course.body
+      .map(
+        (section) => `
+          <div>
+            <h4>${section.heading}</h4>
+            <ul>
+              ${section.items.map((item) => `<li>${item}</li>`).join("")}
+            </ul>
+          </div>
+        `
+      )
+      .join("");
+
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     modal.querySelector(".modal-panel")?.focus();
   };
 
+  const closeModal = () => {
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+  };
+
   document.querySelectorAll(".training-card").forEach((card) => {
-    card.querySelector(".card-link")?.addEventListener("click", (event) => {
-      openModal(card, event.currentTarget);
-    });
+    card.querySelector(".card-link")?.addEventListener("click", () => openModal(card.dataset.course));
   });
 
   closeButton?.addEventListener("click", closeModal);
-  modal?.querySelector(".modal-backdrop")?.addEventListener("click", closeModal);
+  modalBackdrop?.addEventListener("click", closeModal);
+
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
-      setMenu(false);
-      if (modal?.classList.contains("is-open")) closeModal();
+      if (menuToggle && menuToggle.getAttribute("aria-expanded") === "true") {
+        menuToggle.setAttribute("aria-expanded", "false");
+        mainNav?.classList.remove("is-open");
+      }
+      if (modal?.classList.contains("is-open")) {
+        closeModal();
+      }
     }
+  });
+
+  const setMenu = (isOpen) => {
+    if (!menuToggle || !mainNav) return;
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Fermer le menu" : "Ouvrir le menu");
+    mainNav.classList.toggle("is-open", isOpen);
+    document.body.style.overflow = isOpen ? "hidden" : "";
+  };
+
+  menuToggle?.addEventListener("click", () => {
+    const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+    setMenu(!isExpanded);
+  });
+
+  mainNav?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenu(false));
   });
 
   document.querySelector(".verify-cert-btn")?.addEventListener("click", () => {
@@ -135,30 +179,21 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const revealElements = document.querySelectorAll(".reveal");
-  if (
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-    !("IntersectionObserver" in window)
-  ) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
     revealElements.forEach((element) => element.classList.add("is-visible"));
   } else {
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      }),
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
       { threshold: 0.12 }
     );
+
     revealElements.forEach((element) => observer.observe(element));
   }
-
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const target = document.querySelector(link.getAttribute("href"));
-      if (!target) return;
-      event.preventDefault();
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  });
 });
